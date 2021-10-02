@@ -221,6 +221,17 @@ button{
   overflow-y:auto;
   margin: 2rem;
 }
+
+.chr_css_table{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 2;
+  overflow-x: scroll;
+  overflow-y:auto;
+  margin: 2rem;
+  overflow: hidden;
+}
 .chr_css {
   
   display: flex;
@@ -240,6 +251,22 @@ button{
  overflow-y:unset;
  max-height: 100%;
 }*/
+
+.card_tab{
+  display: flex;
+  overflow-x: scroll;
+  overflow-y:scroll;
+  background: linear-gradient(
+    to left top,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.5)
+  );
+  border-radius: 1rem;
+  padding: 3rem;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+  justify-content: space-between;
+
+}
 
 .card {
   display: flex;

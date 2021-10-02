@@ -27,13 +27,13 @@ export default class sidebars extends Component {
                             </NavText>
                         </NavItem>
 
-                        <NavItem className="item" eventKey="Predict">
+                        <NavItem className="item" eventKey="Prediction">
                             <NavIcon><Link to="/predict">
                                 <img src="https://i.ibb.co/fx7wFSS/icon-8.png" alt="icon-8" width="30px" height="30px" />
                             </Link>
                             </NavIcon>
                             <NavText>
-                                Predict
+                             Prediction
                             </NavText>
                         </NavItem>
                         <NavItem className="item" eventKey="Overview">
@@ -45,21 +45,13 @@ export default class sidebars extends Component {
                                 Overview
                             </NavText>
                         </NavItem>
-                        <NavItem className="item" eventKey="Segment">
+                        <NavItem className="item" eventKey="CustomerData">
                             <NavIcon><Link to="/data">
                                 <img src="https://i.ibb.co/fx7wFSS/icon-8.png" alt="icon-8" width="30px" height="30px" />
                             </Link>
                             </NavIcon>
                             <NavText>
-                                kk;
-                            </NavText>
-                        </NavItem>
-                        <NavItem className="item" eventKey="ssl">
-                            <NavIcon>
-                                <img src="https://i.ibb.co/fx7wFSS/icon-8.png" alt="icon-8" width="30px" height="30px" />
-                            </NavIcon>
-                            <NavText>
-                                kk;
+                            Customer Data;
                             </NavText>
                         </NavItem>
                     </SideNav.Nav>
