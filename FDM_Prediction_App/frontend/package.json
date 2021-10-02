@@ -18,6 +18,7 @@
     "react-scripts": "4.0.3",
     "react-select": "^5.0.0",
     "react-sidenav": "^4.0.6",
+    "react-toastify": "^8.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

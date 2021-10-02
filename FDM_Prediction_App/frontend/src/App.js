@@ -8,8 +8,9 @@ import Dash from './components/dash'
 import chartDisp from './components/chartdisp'
 import Landing from './components/landing'
 import nav from './components/nav'
+import  Datat from "./components/data";
 import { Chart } from "./components/Chart";
-import { homet } from "./components/home";
+
 
 
 
@@ -52,6 +53,7 @@ function App() {
           <Route path="/predict" exact component={Dash}></Route>
           <Route path="/chart" exact component={chartDisp}></Route>
           <Route path="/nav" exact component={nav}></Route>
+          <Route path="/data" exact component={Datat}></Route>
          
     </BrowserRouter>
     </div>
