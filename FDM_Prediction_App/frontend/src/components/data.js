@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import {toast} from 'react-toastify';
+import { useState, useEffect } from "react"
+import Nav from './nav'
 
 
 //OrderHome class
@@ -31,6 +33,10 @@ export default class Datat extends Component {
     });
   }
 
+  clusterSelect() {
+
+  }
+
   onDelete = (id) => {
     axios.delete(`http://localhost:8000/order/delete/${id}`).then((res) => {
       toast(`Order Deleted `, {
@@ -57,33 +63,53 @@ export default class Datat extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-9 mt-2 mb-2">
-            <h4>All Orders</h4>
-          </div>
-          <div>
-              <div className="filter-size">
-                  Filter{" "}  
-                  <select value={this.props.size} onChange={this.props.filterProducts}>
-                    <option value="">All</option>
-                    <option value="Starters">Pending</option>
-                    <option value="Mains">Accepted</option>
-                    <option value="Deserts">Completed</option>
-                    <option value="Beverages">Cancelled</option>
-                </select></div>
-          <div className="col-lg-3 mt-2 mb-2" style={{float:'right'}}>
-            <input
-              className="form-control"
-              type="search"
-              placeholder="search"
-              name="searchQuery"
-              onChange={this.handleSearchArea}></input>
-
-          </div></div>
+       /* Frontend output */
+    <div>
+    <main>
+   {/* beginning of back  */}
+   <section class="glass">
+       {/* beginning of left nav  */}
+        <div class="">
+          <Nav/>
 
         </div>
+        
+        <div class="chr_css_table"> {/* container of white back card*/}
+            {/*<h1>Customer Segmentaion</h1>*/}
+            <div className = "card">
+            
+            <div className="">
+              <h4>Customer Details</h4>
+            </div>
+            <div className="row">
+                <div className="filter-size col-2" >
+                    Filter{" "}  
+                    <select value={this.props.size} onChange={this.props.filterProducts}>
+                      <option value="">All</option>
+                      <option value="Starters">Pending</option>
+                      <option value="Mains">Accepted</option>
+                      <option value="Deserts">Completed</option>
+                      <option value="Beverages">Cancelled</option>
+                  </select></div>
+            <div className="col-4" style={{float:'right', marginLeft:"300px"}}>
+              <input
+                className="form-control"
+                type="search"
+                placeholder="search"
+                name="searchQuery"
+                onChange={this.handleSearchArea}></input>
+  
+            </div>
+  
+          </div>
+          </div>
 
+
+
+          <div className = "card_tab">
+          <div className="container">
+
+        {/*Beginning of the table */}
         <table className="table border shadow  table table-striped border " style={{width:'115%',marginLeft:'-90px'}}>
           <thead>
             <tr>
@@ -136,22 +162,26 @@ export default class Datat extends Component {
                 <td>{customers.AcceptedCmp2}</td>
                 <td>{customers.Age}</td>
                 <td>{customers.Education1}</td>
-                <td><Link className="btn btn-outline-primary" to={`/order/edit/${customers._id}`}>
-                  <i className="fas fa-edit"></i>&nbsp;Edit
-          </Link>
-          &nbsp;
-          <Link className="btn btn-danger" href="#" onClick={() => this.onDelete(customers._id)}>
-                    <i className="fas fa-trash-alt"></i>&nbsp;Delete
-          </Link>
-
-                </td>
+                
               </tr>
             ))}
           </tbody>
         </table>
-        <Link to="/order/add" className="btn btn-warning"><i class="fas fa-user-plus"></i>&nbsp;Create New Order</Link>&nbsp;&nbsp;
-        <Link onClick={()=>this.exportPDF()} to="#" className="btn btn-success"><i class="fas fa-download"></i>&nbsp;Download Report</Link>
+        
       </div>
+
+          </div>
+            
+           
+        </div>
+      </section>
+    </main>
+    {/*<div class="circle1"></div>
+      <div class="circle2"></div>*/}
+
+  </div>
+
+      
     )
   }
 };
