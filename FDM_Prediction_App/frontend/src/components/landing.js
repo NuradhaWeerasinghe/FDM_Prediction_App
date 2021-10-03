@@ -30,8 +30,9 @@ export default class Landing extends React.Component {
                   </div>
                   <div className="col-9">
                     <Link to="/predict">    
-                  <div class="card" style = {{display:"flex",width:"20rem",height:"20rem",marginLeft:"18rem",marginTop:"5rem",marginRight:"5rem"}}>
+                  <div class="card" style = {{display:"flex",width:"20rem",height:"20rem",marginLeft:"18rem",marginTop:"5rem",marginRight:"5rem", textAlign:"center"}}>
                         <h2>Clustering </h2>
+                        
                   </div></Link>
                 </div>
               </div>

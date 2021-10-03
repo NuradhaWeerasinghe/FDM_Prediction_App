@@ -1,171 +1,251 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Bar } from "react-chartjs-2";
+import React, { Component } from 'react'
+import axios from 'axios';
+import { Link } from "react-router-dom";
+import {toast} from 'react-toastify';
+import { useState, useEffect } from "react"
+import Nav from './nav'
+import {Bar,Pie} from "react-chartjs-2"
+import './style.css';
 
-export default function ChartByProfessionCategory() {
 
-    //category A
-    const [Marital_StatusCategoryA, setMarital_StatusCategoryA] = useState(0);
-    const [engineerCategoryA, setEngineerCategoryA] = useState(0);
-    const [healthcareCategoryA, setHealthcareCategoryA] = useState(0);
-    const [lawyerCategoryA, setLawyerCategoryA] = useState(0);
-    const [artistCategoryA, setArtistCategoryA] = useState(0);
-    const [entertainmentCategoryA, setEntertainmentCategoryA] = useState(0);
-    const [executiveCategoryA, setExecutiveCategoryA] = useState(0);
-    const [homemakerCategoryA, setHomemakerCategoryA] = useState(0);
-    const [marketingCategoryA, setMarketingCategoryA] = useState(0);
+export default class Datat extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      customers: [],
+      clData1:{
+        labels:["cluster1","cluster2","cluster3","cluster4"],
+        datasets:[
+        {
+        label: "MARRIED",
+        data:[381,493,101,447],
+        backgroundColor: "rgba(25,181,254,1)",
+        },
+        {
+            label: "SINGLE",
+            data:[213,264,73,233],
+            backgroundColor: "#ffbb11",
+        }
+    ],
 
-    
+      }, 
+      clData2:{
+        labels:["cluster1","cluster2","cluster3","cluster4"],
+        datasets:[
+        {
+        label: "CAMP1",
+        data:[46,29,51,15],
+        backgroundColor: "rgba(25,181,254,1)",
+        },
+        {
+            label: "CAMP2",
+            data:[12,5,11,2],
+            backgroundColor: "#ffbb11",
+        },
+        {
+            label: "CAMP3",
+            data:[43,63,18,39],
+            backgroundColor: "rgba(0, 234, 7, 2)",
+        },
+        {
+            label: "CAMP4",
+            data:[69,30,23,32],
+            backgroundColor: "rgba(200, 24, 79, 2)",
+        },
+        {
+            label: "CAMP5",
+            data:[44,28,81,8],
+            backgroundColor: "rgba(260, 24, 300, 2)",
+        }
+    ],
 
-    useEffect(() => {
+      }, 
+      clData3:{
+        labels:["cluster1","cluster2","cluster3","cluster4"],
+        datasets:[
+        {
+        label: "WINE",
+        data:[4,47,11,80],
+        backgroundColor: "rgba(25,181,254,1)",
+        },
+        {
+            label: "MEAT",
+            data:[20,8,38,23],
+            backgroundColor: "#ffbb11",
+        },
+        {
+            label: "FRUIT",
+            data:[20,0,52,4],
+            backgroundColor: "rgba(0, 234, 7, 2)",
+        },
+        {
+            label: "FISH",
+            data:[0,15,0,162],
+            backgroundColor: "rgba(260, 24, 300, 2)",
+        }
+    ],
 
-        axios.get("http://localhost:8000/customers").then((res) => {
-            console.log(res.data);
+      },  
+      clData4:{
+        labels:["cluster1","cluster2","cluster3","cluster4"],
+        datasets:[
+        {
+        label: "DEAL PURCHASES",
+        data:[18,15,4,562],
+        backgroundColor: "rgba(25,181,254,1)",
+        },
+        {
+            label: "WEB PURCHASES",
+            data:[18,377,4,80],
+            backgroundColor: "#ffbb11",
+        },
+        {
+            label: "CATALOG PURCHASES",
+            data:[347,39,58,23],
+            backgroundColor: "rgba(0, 234, 7, 2)",
+        },
+        {
+            label: "STORE PURCHASES",
+            data:[211,326,108,11],
+            backgroundColor: "rgba(260, 24, 300, 2)",
+        },
+    ],
 
-            //category A
-            let Marital_StatusCategoryA = 0;
-            let engineerCountCategoryA = 0;
-            let healthcareCountCategoryA = 0;
-            let lawyerCountCategoryA = 0;
-            let artistCountCategoryA = 0;
-            let entertainmentCountCategoryA = 0;
-            let executiveCountCategoryA = 0;
-            let homemakerCountCategoryA = 0;
-            let marketingCountCategoryA = 0;
+      },   
+    };
+  }
+
+  
+
+ 
+
+  componentDidMount() {
+    this.retrieveCustomers();
+  }
+
+  retrieveCustomers() {
+    axios.get("http://localhost:8000/customers").then(res => {
+      if (res.data.success) {
+        this.setState({
+          customers: res.data.existingCustomers
+        });
+        console.log(this.state.customers)
+      }
+    });
+  }
+
+  clustermethod= () => {
+    let tot1 = 0;
+    let tot2 = 0;
+    let tot3 = 0;
+    let tot4 = 0;
+    this.state.customers.map((customers,index)=>{
+      if(customers.l3 == "1")
+         tot1 =  tot1 + 1;
+      })
+      this.state.customers.map((customers,index)=>{
+        if(customers.l3 == "2")
+           tot2 =  tot2 + 1;
+        })
+        this.state.customers.map((customers,index)=>{
+          if(customers.l3 == "3")
+             tot3 =  tot3 + 1;
+          })
+          this.state.customers.map((customers,index)=>{
+            if(customers.l3 == "4")
+               tot4 =  tot4 + 1;
+            })
+            document.getElementById("t1").value = tot3
+          
+   }
+
+  
+
+  // filter methods
+ 
+  render() {
+    const {data,clData1,clData2,clData3,clData4}= this.state;
+    return (
+       /* Frontend output */
+    <div>
+    <main>
+   {/* beginning of back  */}
+   <section class="glass">
+       {/* beginning of left nav  */}
+        <div class="">
+          <Nav/>
+
+        </div>
+        
+        <div class="chr_css"> {/* container of white back card*/}
+            {/*<h1>Customer Segmentaion</h1>*/}
             
 
-
-            res.data.forEach((singleUser) => {
-                if (singleUser.Marital_Status.localeCompare("1") == 0) {
-                    if (singleUser.l1.localeCompare("1") == 0) {
-                        setMarital_StatusCategoryA(++Marital_StatusCategoryA)
-                    }
-                }
-                if (singleUser.Profession.localeCompare("Engineer") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setEngineerCategoryA(++engineerCountCategoryA)
-                    }
-                }
-
-
-                if (singleUser.Profession.localeCompare("Healthcare") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setHealthcareCategoryA(++healthcareCountCategoryA)
-                    }
-                    }
-
-
-                if (singleUser.Profession.localeCompare("Lawyer") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setLawyerCategoryA(++lawyerCountCategoryA)
-                    }
-                    }
-
-                if (singleUser.Profession.localeCompare("Entertainment") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setArtistCategoryA(++artistCountCategoryA)
-                    }
-                    }
- 
-                if (singleUser.Profession.localeCompare("Artist") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setEntertainmentCategoryA(++entertainmentCountCategoryA)
-                    }
-                    }
-
-                
-                if (singleUser.Profession.localeCompare("Executive") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setExecutiveCategoryA(++executiveCountCategoryA)
-                    }
-                    }
-
-                if (singleUser.Profession.localeCompare("Homemaker") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setHomemakerCategoryA(++homemakerCountCategoryA)
-                    }
-                    }
-
-
-                if (singleUser.Profession.localeCompare("Marketing") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setMarketingCategoryA(++marketingCountCategoryA)
-                    }
-                    }
-            })
-        })
-
-    }, [])
-
-    //Categoty A by Profession Bar Chart
-
-    const barChartCategoryA = (
-        <Bar
-            data={{
-                labels: ['Doctor', 'Engineer','Healthcare','Lawyer','Artist','Entertainment','Executive','Homemaker','Marketing'],
-                datasets: [
-                    {
-                        data: [Marital_StatusCategoryA, engineerCategoryA,healthcareCategoryA,lawyerCategoryA,artistCategoryA,entertainmentCategoryA,executiveCategoryA,homemakerCategoryA,marketingCategoryA],
-                        backgroundColor: [
-                            "#3da19c",
-                            "#06adbf",
-                            "#f7d619",
-                            "#bf00c2",
-                            "#ff2684",
-                            "#3254a8",
-                        ],
-                        label: "Category A",
-                    },
-                ],
-            }}
-            options={{
-                layout: {
-                    padding: {
-                        left: 0,
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                    },
-                },
-
-                scales: {
-                    xAxes: [
-                        {
-                            gridLines: {
-                                display: false,
-                                drawBorder: true,
-                                drawOnChartArea: false,
-                            },
-                        },
-                    ],
-                    yAxes: [
-                        {
-                            gridLines: {
-                                display: false,
-                                drawBorder: true,
-                                drawOnChartArea: false,
-                            },
-                        },
-                    ],
-                },
-            }}
-        />
-    );
-
-    return (
-        <div className="container mt-5">
-            <div className="card boderRadiusCards">
-                <div className="card-body">
-                    <div>
-                        <h5 className="text-center">Category By Profession Oveview</h5>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6 p-5"><h3>Category A By Profession</h3> <hr />{barChartCategoryA}</div>
-                        <div>
-                        </div>
-                    </div>
+          <div class="cards">
+              <div class="card"> {/* white back  card*/}
+                <div className="App">
+                <Bar 
+                options={{
+                title:{
+                    display:true,
+                    text:"Bar Chart for Marital Status",
+                    fontSize:32
+                  },
+                }}
+                data={clData1}/> 
                 </div>
+              </div>
+              <div class="card"> {/* white back  card*/}
+                <div className="App">
+                <Bar 
+                  options={{
+                    title:{
+                        display:true,
+                        text:"Bar Chart for Accepted campaign",
+                        fontSize:32
+                      },
+                    }}
+                data={clData2}/> 
                 </div>
+              </div>
+              <div class="card"> {/* white back  card*/}
+                <div className="App">
+                <Bar 
+                  options={{
+                    title:{
+                        display:true,
+                        text:"Bar Chart for Total Spendings",
+                        fontSize:32
+                      },
+                    }}
+                data={clData3}/> 
+                </div>
+              </div>
+              <div class="card"> {/* white back  card*/}
+                <div className="App">
+                <Bar 
+                  options={{
+                    title:{
+                        display:true,
+                        text:"Bar Chart for Number of purchases",
+                        fontSize:32
+                      },
+                    }}
+                data={clData4}/> 
+                </div>
+              </div>
+      
+            </div>
+           
         </div>
-                )
-}
+      </section>
+    </main>
+    {/*<div class="circle1"></div>
+      <div class="circle2"></div>*/}
+
+  </div>
+
+      
+    )
+  }
+};

@@ -324,3 +324,15 @@ button{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.marg_l{
+  margin-left: 80px;
+}
+.icon1{
+  height: 30px;
+  width: 30px;
+  
+}
+abc{
+  margin-top: 20px;
+}
