@@ -1,178 +1,171 @@
-import React, { Component } from "react";
-import { Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Boostrap from "bootstrap";
-import Select from "react-select";
-import API from '../API.js';
-import { NavLink } from 'react-router-dom';
-import './style.css';
-
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Bar } from "react-chartjs-2";
 
+export default function ChartByProfessionCategory() {
 
+    //category A
+    const [Marital_StatusCategoryA, setMarital_StatusCategoryA] = useState(0);
+    const [engineerCategoryA, setEngineerCategoryA] = useState(0);
+    const [healthcareCategoryA, setHealthcareCategoryA] = useState(0);
+    const [lawyerCategoryA, setLawyerCategoryA] = useState(0);
+    const [artistCategoryA, setArtistCategoryA] = useState(0);
+    const [entertainmentCategoryA, setEntertainmentCategoryA] = useState(0);
+    const [executiveCategoryA, setExecutiveCategoryA] = useState(0);
+    const [homemakerCategoryA, setHomemakerCategoryA] = useState(0);
+    const [marketingCategoryA, setMarketingCategoryA] = useState(0);
 
-//gender
-const genderValues = [
-  { value: 1998, label: '1998' },
-  { value: 2007, label: '2007' },
-  { value: 1000, label: '1000' },
-];
+    
 
-export default class homet extends React.Component {
+    useEffect(() => {
 
-  constructor(props) {
-    super(props);
-    this.onSelectGender = this.onSelectGender.bind(this);
-   
-    this.state = {
-        Gender: 0,
-       
-    };
+        axios.get("http://localhost:8000/customers").then((res) => {
+            console.log(res.data);
 
-    this.GetDetails = this.GetDetails.bind(this)
-}
-
-onSelectGender = (event) => {
-  if (event) {
-      console.log('value', parseInt(event.value));
-      this.setState({ Gender: event.value },() => console.log(this.state));
-  }
-};
-
-onsubmit = (event) => {
-  event.preventDefault()
-  let headers = new Headers();
-
-  headers.append('Origin', 'http://localhost:3000');
-  headers.append('Content-Type', 'application/json');
-  headers.append('Accept', 'application/json');
-
-  let formdata = new FormData();
-  formdata.append('Gender', 'aa')
-
-  const requestOptions = {
-
-      method: 'POST',
-      headers: headers,
-      mode: 'no-cors',
-      body: formdata
-
-  };
-
-  fetch('http://127.0.0.1:5000/api/users', requestOptions).then(response => console.log(response));
-
-}
-
-
-
-
-
-GetDetails() {
-
-  let formData = new FormData();
-  formData.append('Gender', this.state.Gender);
-  
-      console.log('I was here')
-  API.getPrediction(formData)
-      .then(res => {
-         this.setState({
-             result:res.data
-         })
-      })
-    }
-
-  /* Frontend output */
-  render() {
-    return (
-      <div>
-        <main>
-        {/* beginning of back  */}
-          <section class="glass">
-
-            {/* beginning of left nav  */}
-            <div class="dashboard">
-              <Link to= "/chart" class="card_btn" ><label>Hello </label></Link>
-              <Link to= "/chart" class="card_btn" ><label>Hello </label></Link>
-              <Link to= "/chart" class="card_btn" ><label>Hello </label></Link>
-            </div>
+            //category A
+            let Marital_StatusCategoryA = 0;
+            let engineerCountCategoryA = 0;
+            let healthcareCountCategoryA = 0;
+            let lawyerCountCategoryA = 0;
+            let artistCountCategoryA = 0;
+            let entertainmentCountCategoryA = 0;
+            let executiveCountCategoryA = 0;
+            let homemakerCountCategoryA = 0;
+            let marketingCountCategoryA = 0;
             
-            <div class="games"> {/* container of white back card*/}
-              {/*<h1>Customer Segmentaion</h1>*/}
-              <div class="cards">
-                <div class="card"> {/* white back  card*/}
-                  <div class="card-info">
-                    <h2>Customer Segmentation</h2><br></br>
 
-                    <Form>
-                      <div className="row">
-                        <div className="col-4">
-                          <label >Customer Name</label>
-                        </div>
-                        <div className="col-6">
-                          <Select options={genderValues}
-                          onChange={this.onSelectGender} required>
-                          </Select><br></br>
-                        </div>
-                      </div>
 
-                      <div className="row">
-                        <div className="col-4">
-                          <label >Customer Age</label>
-                        </div>
-                        <div className="col-6">
-                          <Select options={genderValues} required>
-                          </Select><br></br>
-                        </div>
-                      </div>
+            res.data.forEach((singleUser) => {
+                if (singleUser.Marital_Status.localeCompare("1") == 0) {
+                    if (singleUser.l1.localeCompare("1") == 0) {
+                        setMarital_StatusCategoryA(++Marital_StatusCategoryA)
+                    }
+                }
+                if (singleUser.Profession.localeCompare("Engineer") == 0) {
+                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
+                        setEngineerCategoryA(++engineerCountCategoryA)
+                    }
+                }
 
-                      <div className="row">
-                        <div className="col-4">
-                          <label >Monthly Income</label>
-                        </div>
-                        <div className="col-6">
-                          <Select options={genderValues} required>
-                          </Select><br></br>
-                        </div>
-                      </div>
 
-                      <div className="row">
-                        <div className="col-4">
-                          <label >Marital Status</label>
-                        </div>
-                        <div className="col-6">
-                          <Select options={genderValues}>
-                          </Select><br></br>
-                        </div>
-                      </div> 
-                      <center>
-                        
-                      <button className="btn-grad" type="button" onClick={this.GetDetails}>PREDICT</button>
-                      </center>
-                    </Form>
-                  </div>
-                </div>
+                if (singleUser.Profession.localeCompare("Healthcare") == 0) {
+                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
+                        setHealthcareCategoryA(++healthcareCountCategoryA)
+                    }
+                    }
+
+
+                if (singleUser.Profession.localeCompare("Lawyer") == 0) {
+                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
+                        setLawyerCategoryA(++lawyerCountCategoryA)
+                    }
+                    }
+
+                if (singleUser.Profession.localeCompare("Entertainment") == 0) {
+                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
+                        setArtistCategoryA(++artistCountCategoryA)
+                    }
+                    }
+ 
+                if (singleUser.Profession.localeCompare("Artist") == 0) {
+                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
+                        setEntertainmentCategoryA(++entertainmentCountCategoryA)
+                    }
+                    }
+
                 
-                <div class="card">
-                               
-                   <div className="row">
-                        <div className="col-5">
-                          <label >Customer Segment  : </label>
-                        </div>
-                        <div className="col-6">
-                        <label >{this.state.result}</label>
-                        </div>
-                      </div>
+                if (singleUser.Profession.localeCompare("Executive") == 0) {
+                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
+                        setExecutiveCategoryA(++executiveCountCategoryA)
+                    }
+                    }
 
-                </div>
-              </div>
-            </div>
-          </section>
-        </main>
-        {/*<div class="circle1"></div>
-        <div class="circle2"></div>*/}
+                if (singleUser.Profession.localeCompare("Homemaker") == 0) {
+                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
+                        setHomemakerCategoryA(++homemakerCountCategoryA)
+                    }
+                    }
 
-      </div>
+
+                if (singleUser.Profession.localeCompare("Marketing") == 0) {
+                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
+                        setMarketingCategoryA(++marketingCountCategoryA)
+                    }
+                    }
+            })
+        })
+
+    }, [])
+
+    //Categoty A by Profession Bar Chart
+
+    const barChartCategoryA = (
+        <Bar
+            data={{
+                labels: ['Doctor', 'Engineer','Healthcare','Lawyer','Artist','Entertainment','Executive','Homemaker','Marketing'],
+                datasets: [
+                    {
+                        data: [Marital_StatusCategoryA, engineerCategoryA,healthcareCategoryA,lawyerCategoryA,artistCategoryA,entertainmentCategoryA,executiveCategoryA,homemakerCategoryA,marketingCategoryA],
+                        backgroundColor: [
+                            "#3da19c",
+                            "#06adbf",
+                            "#f7d619",
+                            "#bf00c2",
+                            "#ff2684",
+                            "#3254a8",
+                        ],
+                        label: "Category A",
+                    },
+                ],
+            }}
+            options={{
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                    },
+                },
+
+                scales: {
+                    xAxes: [
+                        {
+                            gridLines: {
+                                display: false,
+                                drawBorder: true,
+                                drawOnChartArea: false,
+                            },
+                        },
+                    ],
+                    yAxes: [
+                        {
+                            gridLines: {
+                                display: false,
+                                drawBorder: true,
+                                drawOnChartArea: false,
+                            },
+                        },
+                    ],
+                },
+            }}
+        />
     );
-  }
-}
 
+    return (
+        <div className="container mt-5">
+            <div className="card boderRadiusCards">
+                <div className="card-body">
+                    <div>
+                        <h5 className="text-center">Category By Profession Oveview</h5>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6 p-5"><h3>Category A By Profession</h3> <hr />{barChartCategoryA}</div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+                )
+}
