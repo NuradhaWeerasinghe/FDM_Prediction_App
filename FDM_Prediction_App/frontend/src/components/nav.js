@@ -18,7 +18,7 @@ export default class sidebars extends Component {
                     <SideNav.Toggle className="marg" />
                     <SideNav.Nav defaultSelected="home">
                         <NavItem className="item " eventKey="Home" style={{marginTop:"20px"}}>
-                            <NavIcon><Link to="/">
+                            <NavIcon ><Link to="/">
                             <i class="fa fa-home fa-2x" aria-hidden="true"></i>
                             </Link>
                             </NavIcon>
@@ -38,7 +38,7 @@ export default class sidebars extends Component {
                             </NavText>
                         </NavItem>
                         <NavItem className="item" eventKey="Overview">
-                            <NavIcon><Link to="/chart">
+                            <NavIcon><Link to="/home">
                             <i class="fa fa-table fa-2x" aria-hidden="true"></i>
 
                             </Link>

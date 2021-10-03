@@ -17,6 +17,7 @@ export default class Datat extends Component {
 
   // Creating report 
  
+ 
 
   componentDidMount() {
     this.retrieveCustomers();
@@ -37,29 +38,27 @@ export default class Datat extends Component {
 
   }
 
-  onDelete = (id) => {
-    axios.delete(`http://localhost:8000/order/delete/${id}`).then((res) => {
-      toast(`Order Deleted `, {
-        type: toast.TYPE.SUCCESS,
-        autoClose: 4000
-    });  
-    
-      this.retrieveCustomers();
-    })
-  }
+  
 
   // filter methods
  
 
 
-  handleSearchArea = (e) => {
-    const searchKey = e.currentTarget.value;
-    axios.get("http://localhost:8000/customers").then(res => {
-      if (res.data.success) {
-        this.filterData(res.data.existingCustomers, searchKey)
+  filterData(customers,searchKey){
+    const result=customers.filter((customers)=>
+    customers.Clusters_1.includes(searchKey)
+    )
+    this.setState({customers:result})
+  }
+  
+  
+  handleSearchArea=(e)=>{
+    const searchKey=e.currentTarget.value;
+    axios.get("http://localhost:8000/customers").then(res =>{
+      if(res.data.success){
+        this.filterData(res.data.existingCustomers,searchKey)
       }
     });
-
   }
   render() {
     return (

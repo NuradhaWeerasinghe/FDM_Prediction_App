@@ -12,11 +12,98 @@ import CDBSidebarFooter from 'react'
 
 
 //gender
-const genderValues = [
-  { value: 1998, label: '1998' },
-  { value: 2007, label: '2007' },
-  { value: 1000, label: '1000' },
+
+const maritalStatus = [
+  { value: 'In a relationship', label: 'In a relationship' },
+  { value: 'Single', label: 'Single' },
 ];
+
+const promotion_1 = [
+  { value: 'Yes', label: 'Yes' },
+  { value: 'No', label: 'No' },
+];
+
+const promotion_2 = [
+  { value: 'Yes', label: 'Yes' },
+  { value: 'No', label: 'No' },
+];
+
+const promotion_3 = [
+  { value: 'Yes', label: 'Yes' },
+  { value: 'No', label: 'No' },
+];
+
+const promotion_4 = [
+  { value: 'Yes', label: 'Yes' },
+  { value: 'No', label: 'No' },
+];
+
+const promotion_5 = [
+  { value: 'Yes', label: 'Yes' },
+  { value: 'No', label: 'No' },
+];
+
+const NumOfKids = [
+  { value: 1, label: '1' },
+  { value: 2, label: '2' },
+  { value: 3, label: '3' },
+  { value: 4, label: '4' },
+  { value: 5, label: '5' },
+  { value: 6, label: '6' },
+  { value: 7, label: '7' },
+  { value: 8, label: '8' },
+  { value: 9, label: '9' },
+  { value: 10, label: '10' },
+
+];
+
+const education = [
+  { value: 'Graduation', label: 'Graduation' },
+  { value: 'PhD', label: 'PhD' },
+  { value: 'Master', label: 'Master' },
+  { value: '2n Cycle', label: '2n Cycle' },
+  { value: 'Basic', label: 'Basic' },
+];
+
+const ageGroup = [
+  { value: 'Early Adult', label: 'Early Adult' },
+  { value: 'Middle Adult', label: 'Middle Adult' },
+  { value: 'MastLate Adulte', label: 'Late Adult' },
+  { value: '2n Cycle', label: '2n Cycle' },
+  { value: 'Senior Adult', label: 'Senior Adult' },
+];
+
+const incomeGroup = [
+  { value: 'Low', label: 'Low' },
+  { value: 'Low mid', label: 'Low Mid' },
+  { value: 'Mid', label: 'Mid' },
+  { value: 'Mid high', label: 'Mid high' },
+  { value: 'High', label: 'High' },
+];
+
+const recencyeGroup = [
+  { value: 'Low', label: 'Low' },
+  { value: 'Low mid', label: 'Low Mid' },
+  { value: 'Mid', label: 'Mid' },
+  { value: 'Mid high', label: 'Mid high' },
+  { value: 'High', label: 'High' },
+];
+
+const totalSpending = [
+  { value: 'Low', label: 'Low' },
+  { value: 'Low mid', label: 'Low Mid' },
+  { value: 'Mid', label: 'Mid' },
+  { value: 'Mid high', label: 'Mid high' },
+  { value: 'High', label: 'High' },
+];
+
+const purchersGroup = [
+  { value: 'Low', label: 'Low' },
+  { value: 'Average', label: 'Average' },
+  { value: 'Mid', label: 'Mid' },
+  { value: 'High', label: 'High' },
+];
+
 
 export default class Dash extends React.Component {
 
@@ -104,10 +191,10 @@ export default class Dash extends React.Component {
                     <Form>
                       <div className="row">
                         <div className="col-4 marg_l">
-                          <label >Marital Status</label>
+                          <label >Relationship status</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}
+                          <Select options={maritalStatus}
                             onChange={this.onSelectGender} required>
                           </Select><br></br>
                         </div>
@@ -118,7 +205,7 @@ export default class Dash extends React.Component {
                           <label >Promotion 01</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues} required>
+                          <Select options={promotion_1} required>
                           </Select><br></br>
                         </div>
                       </div>
@@ -128,7 +215,7 @@ export default class Dash extends React.Component {
                           <label >Promotion 02</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues} required>
+                          <Select options={promotion_2} required>
                           </Select><br></br>
                         </div>
                       </div>
@@ -138,7 +225,7 @@ export default class Dash extends React.Component {
                           <label >Promotion 03</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={promotion_3}>
                           </Select><br></br>
                         </div>
                       </div>
@@ -147,7 +234,7 @@ export default class Dash extends React.Component {
                           <label >Promotion 04</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={promotion_4}>
                           </Select><br></br>
                         </div>
                       </div>
@@ -156,7 +243,7 @@ export default class Dash extends React.Component {
                           <label >Promotion 05</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={promotion_5}>
                           </Select><br></br>
                         </div>
                       </div>
@@ -165,7 +252,7 @@ export default class Dash extends React.Component {
                           <label >Num of kids </label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={NumOfKids}>
                           </Select><br></br>
                         </div>
                       </div>
@@ -174,7 +261,7 @@ export default class Dash extends React.Component {
                           <label >Education</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={education}>
                           </Select><br></br>
                         </div>
                       </div>
@@ -183,7 +270,7 @@ export default class Dash extends React.Component {
                           <label >Age Group</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={ageGroup}>
                           </Select><br></br>
                         </div>
                       </div>
@@ -192,7 +279,7 @@ export default class Dash extends React.Component {
                           <label >Income Category</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={incomeGroup}>
                           </Select><br></br>
                         </div>
                       </div>
@@ -201,7 +288,8 @@ export default class Dash extends React.Component {
                           <label >Recency category</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={recencyeGroup
+                          }>
                           </Select><br></br>
                         </div>
                       </div>
@@ -210,7 +298,7 @@ export default class Dash extends React.Component {
                           <label >Total Spending</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={totalSpending}>
                           </Select><br></br>
                         </div>
                       </div>
@@ -219,7 +307,7 @@ export default class Dash extends React.Component {
                           <label >Total_Purchases</label>
                         </div>
                         <div className="col-5">
-                          <Select options={genderValues}>
+                          <Select options={purchersGroup}>
                           </Select><br></br>
                         </div>
                       </div>

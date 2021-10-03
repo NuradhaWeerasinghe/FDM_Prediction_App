@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {toast} from 'react-toastify';
 import { useState, useEffect } from "react"
 import Nav from './nav'
-import {Bar,Line} from "react-chartjs-2"
+import {Bar,Pie} from "react-chartjs-2"
 import './style.css';
 
 
@@ -15,35 +15,103 @@ export default class Datat extends Component {
       customers: [],
       clData1:{
         labels:["cluster1","cluster2","cluster3","cluster4"],
-        datasets:[{
-          label:"Line Chart For Annual Profits",
-          data:[{data:[1,2,3,4]},{data:[3,4,2,1]},{data:[6,6,3,2]}],
-        }],
+        datasets:[
+        {
+        label: "MARRIED",
+        data:[381,493,101,447],
+        backgroundColor: "rgba(25,181,254,1)",
+        },
+        {
+            label: "SINGLE",
+            data:[213,264,73,233],
+            backgroundColor: "#ffbb11",
+        }
+    ],
+
       }, 
       clData2:{
         labels:["cluster1","cluster2","cluster3","cluster4"],
-        datasets:[{
-          label:"Line Chart For Annual Profits",
-          data:[10,3,7,5],
-         
-        }],
-      },
+        datasets:[
+        {
+        label: "CAMP1",
+        data:[46,29,51,15],
+        backgroundColor: "rgba(25,181,254,1)",
+        },
+        {
+            label: "CAMP2",
+            data:[12,5,11,2],
+            backgroundColor: "#ffbb11",
+        },
+        {
+            label: "CAMP3",
+            data:[43,63,18,39],
+            backgroundColor: "rgba(0, 234, 7, 2)",
+        },
+        {
+            label: "CAMP4",
+            data:[69,30,23,32],
+            backgroundColor: "rgba(200, 24, 79, 2)",
+        },
+        {
+            label: "CAMP5",
+            data:[44,28,81,8],
+            backgroundColor: "rgba(260, 24, 300, 2)",
+        }
+    ],
+
+      }, 
       clData3:{
         labels:["cluster1","cluster2","cluster3","cluster4"],
-        datasets:[{
-          label:"Line Chart For Annual Profits",
-          data:[1,3,2,5],
-         
-        }],
-      }, 
+        datasets:[
+        {
+        label: "WINE",
+        data:[4,47,11,80],
+        backgroundColor: "rgba(25,181,254,1)",
+        },
+        {
+            label: "MEAT",
+            data:[20,8,38,23],
+            backgroundColor: "#ffbb11",
+        },
+        {
+            label: "FRUIT",
+            data:[20,0,52,4],
+            backgroundColor: "rgba(0, 234, 7, 2)",
+        },
+        {
+            label: "FISH",
+            data:[0,15,0,162],
+            backgroundColor: "rgba(260, 24, 300, 2)",
+        }
+    ],
+
+      },  
       clData4:{
         labels:["cluster1","cluster2","cluster3","cluster4"],
-        datasets:[{
-          label:"Line Chart For Annual Profits",
-          data:[1,3,2,5],
-         
-        }],
-      },  
+        datasets:[
+        {
+        label: "DEAL PURCHASES",
+        data:[18,15,4,562],
+        backgroundColor: "rgba(25,181,254,1)",
+        },
+        {
+            label: "WEB PURCHASES",
+            data:[18,377,4,80],
+            backgroundColor: "#ffbb11",
+        },
+        {
+            label: "CATALOG PURCHASES",
+            data:[347,39,58,23],
+            backgroundColor: "rgba(0, 234, 7, 2)",
+        },
+        {
+            label: "STORE PURCHASES",
+            data:[211,326,108,11],
+            backgroundColor: "rgba(260, 24, 300, 2)",
+        },
+    ],
+
+      },   
     };
   }
 
@@ -109,136 +177,65 @@ export default class Datat extends Component {
 
         </div>
         
-        <div class="chr_css_table"> {/* container of white back card*/}
+        <div class="chr_css"> {/* container of white back card*/}
             {/*<h1>Customer Segmentaion</h1>*/}
-            <div className = "card">
             
-            <div className="">
-              <h4>Customer Details</h4>
+
+          <div class="cards">
+              <div class="card"> {/* white back  card*/}
+                <div className="App">
+                <Bar 
+                options={{
+                title:{
+                    display:true,
+                    text:"Bar Chart for Marital Status",
+                    fontSize:32
+                  },
+                }}
+                data={clData1}/> 
+                </div>
+              </div>
+              <div class="card"> {/* white back  card*/}
+                <div className="App">
+                <Bar 
+                  options={{
+                    title:{
+                        display:true,
+                        text:"Bar Chart for Accepted campaign",
+                        fontSize:32
+                      },
+                    }}
+                data={clData2}/> 
+                </div>
+              </div>
+              <div class="card"> {/* white back  card*/}
+                <div className="App">
+                <Bar 
+                  options={{
+                    title:{
+                        display:true,
+                        text:"Bar Chart for Total Spendings",
+                        fontSize:32
+                      },
+                    }}
+                data={clData3}/> 
+                </div>
+              </div>
+              <div class="card"> {/* white back  card*/}
+                <div className="App">
+                <Bar 
+                  options={{
+                    title:{
+                        display:true,
+                        text:"Bar Chart for Number of purchases",
+                        fontSize:32
+                      },
+                    }}
+                data={clData4}/> 
+                </div>
+              </div>
+      
             </div>
-            <div className="row">
-                <div className="filter-size col-2" >
-                    Filter{" "}  
-                    <select value={this.props.size} onChange={this.props.filterProducts}>
-                      <option value="">All</option>
-                      <option value="Starters">Pending</option>
-                      <option value="Mains">Accepted</option>
-                      <option value="Deserts">Completed</option>
-                      <option value="Beverages">Cancelled</option>
-                  </select></div>
-            <div className="col-4" style={{float:'right', marginLeft:"300px"}}>
-              <input
-                className="form-control"
-                type="search"
-                placeholder="search"
-                name="searchQuery"
-                onChange={this.handleSearchArea}></input>
-  
-            </div>
-  
-          </div>
-          </div>
-
-
-
-          <div className = "card_tab">
-          <div className="container">
-          <Bar 
-           options={{
-             fill:{
-                  target:'origin',
-                  above:'rgba(0,230,64,1)', 
-             },
-           title:{
-             display:true,
-             text:"Line Chart for Annual Profit",
-             fontSize:32
-           },
-           legend:{
-             display:true,
-             position:"right"
-           },
-            backgroundColor: "rgba(25,181,254,1)",
-            hoverBackgroundColor: "rgba(255,0,255,0.75)",
-            hoverBorderWidth: 20,
-            hoverBorderColor: "rgba(255,0,255,0.75)",
-           borderColor:"rgba(25,181,254,1)",
-           borderWidth:2,
-           radius:2
-
-           }}
-           data={clData1}/> 
-          <br></br>
-          <Bar 
-           options={{
-           backgroundColor: [
-            "#ffbb11",
-            "#ecf0f1",
-            "#50AF95",
-            "#f3ba2f",
-            "#2a71d0"
-          ],
-           borderWidth:2,
-           radius:2
-
-           }}
-           data={clData2}/> 
-           <br></br>
-           <Bar 
-           options={{
-             fill:{
-                  target:'origin',
-                  above:'rgba(0,230,64,1)', 
-             },
-           title:{
-             display:true,
-             text:"Line Chart for Annual Profit",
-             fontSize:32
-           },
-           legend:{
-             display:true,
-             position:"right"
-           },
-            backgroundColor: "rgba(25,181,254,1)",
-            hoverBackgroundColor: "rgba(255,0,255,0.75)",
-            hoverBorderWidth: 20,
-            hoverBorderColor: "rgba(255,0,255,0.75)",
-           borderColor:"rgba(25,181,254,1)",
-           borderWidth:2,
-           radius:2
-
-           }}
-           data={clData3}/> 
-           <br></br>
-           <Bar 
-           options={{
-             fill:{
-                  target:'origin',
-                  above:'rgba(0,230,64,1)', 
-             },
-           title:{
-             display:true,
-             text:"Line Chart for Annual Profit",
-             fontSize:32
-           },
-           legend:{
-             display:true,
-             position:"right"
-           },
-            backgroundColor: "rgba(25,181,254,1)",
-            hoverBackgroundColor: "rgba(255,0,255,0.75)",
-            hoverBorderWidth: 20,
-            hoverBorderColor: "rgba(255,0,255,0.75)",
-           borderColor:"rgba(25,181,254,1)",
-           borderWidth:2,
-           radius:2
-
-           }}
-           data={clData4}/> 
-      </div>
-
-          </div>
-            
            
         </div>
       </section>
