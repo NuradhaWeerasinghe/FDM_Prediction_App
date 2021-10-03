@@ -86,10 +86,10 @@ export default class Datat extends Component {
                     Filter{" "}  
                     <select value={this.props.size} onChange={this.props.filterProducts}>
                       <option value="">All</option>
-                      <option value="Starters">Pending</option>
-                      <option value="Mains">Accepted</option>
-                      <option value="Deserts">Completed</option>
-                      <option value="Beverages">Cancelled</option>
+                      <option value="Starters">Cluster 1</option>
+                      <option value="Mains">Cluster 2</option>
+                      <option value="Deserts">Cluster 3</option>
+                      <option value="Beverages">Cluster 4</option>
                   </select></div>
             <div className="col-4" style={{float:'right', marginLeft:"300px"}}>
               <input
@@ -115,25 +115,29 @@ export default class Datat extends Component {
             <tr>
               <th scope="col">#</th>
               <th scope="col">ID</th>
-              <th scope="col">Marital_Status</th>
+              <th scope="col">Marital Status</th>
               <th scope="col">Income</th>
-              <th scope="col">Kidhome</th>
-              <th scope="col">Teenhome</th>
+              <th scope="col">Num. Kids</th>
+              <th scope="col">Num. Teens</th>
               <th scope="col">Recency</th>
-              <th scope="col">MntWines</th>
-              <th scope="col">MntFruits</th>
-              <th scope="col">MntMeatProducts</th>
-              <th scope="col">MntFishProducts</th>
-              <th scope="col">MntSweetProducts</th>
-              <th scope="col">NumDealsPurchases</th>
-              <th scope="col">NumStorePurchases</th>
-              <th scope="col">AcceptedCmp3</th>
-              <th scope="col">AcceptedCmp4</th>
-              <th scope="col">AcceptedCmp5</th>
-              <th scope="col">AcceptedCmp1</th>
-              <th scope="col">AcceptedCmp2</th>
+              <th scope="col">Wines Expense</th>
+              <th scope="col">Fruits Expense</th>
+              <th scope="col">Meat Expense</th>
+              <th scope="col">Fish Expense</th>
+              <th scope="col">Sweet Expense</th>
+              <th scope="col">Gold Expense</th>
+              <th scope="col">Num Deals Purchases</th>
+              <th scope="col">Num Store Purchases</th>
+              <th scope="col">Num Catalog Purchases</th>
+              <th scope="col">Num Web Purchases</th>
+              <th scope="col">Accepted Cmp3</th>
+              <th scope="col">Accepted Cmp4</th>
+              <th scope="col">Accepted Cmp5</th>
+              <th scope="col">Accepted Cmp1</th>
+              <th scope="col">Accepted Cmp2</th>
               <th scope="col">Age</th>
-              <th scope="col">Education1</th>
+              <th scope="col">Education</th>
+              <th scope="col">Cluster</th>
             </tr>
           </thead>
           <tbody>
@@ -150,11 +154,12 @@ export default class Datat extends Component {
                 <td>{customers.MntFruits}</td>
                 <td>{customers.MntMeatProducts}</td>
                 <td>{customers.MntFishProducts}</td>
+                <td>{customers.MntSweetProducts}</td>
                 <td>{customers.MntGoldProds}</td>
                 <td>{customers.NumDealsPurchases}</td>
                 <td>{customers.NumCatalogPurchases}</td>
                 <td>{customers.NumStorePurchases}</td>
-                <td>{customers.NumWebVisitsMonth}</td>
+                <td>{customers.NumWebPurchases}</td>
                 <td>{customers.AcceptedCmp3}</td>
                 <td>{customers.AcceptedCmp4}</td>
                 <td>{customers.AcceptedCmp5}</td>
@@ -162,7 +167,7 @@ export default class Datat extends Component {
                 <td>{customers.AcceptedCmp2}</td>
                 <td>{customers.Age}</td>
                 <td>{customers.Education1}</td>
-                
+                <td>{customers.l3}</td>
               </tr>
             ))}
           </tbody>
