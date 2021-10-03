@@ -101,10 +101,11 @@ GetDetails() {
                   <div class="card-info">
                     <h2>Customer Segmentation</h2><br></br>
 
+                    {/* beginning of the form  */}
                     <Form>
                       <div className="row">
                         <div className="col-4">
-                          <label >Customer Name</label>
+                          <label >Amount Spend on Wines</label>
                         </div>
                         <div className="col-6">
                           <Select options={genderValues}
@@ -115,7 +116,7 @@ GetDetails() {
 
                       <div className="row">
                         <div className="col-4">
-                          <label >Customer Age</label>
+                          <label >Amount Spend on Fruits</label>
                         </div>
                         <div className="col-6">
                           <Select options={genderValues} required>
@@ -125,23 +126,42 @@ GetDetails() {
 
                       <div className="row">
                         <div className="col-4">
-                          <label >Monthly Income</label>
+                          <label >Amount Spend on Meats</label>
                         </div>
                         <div className="col-6">
                           <Select options={genderValues} required>
                           </Select><br></br>
                         </div>
                       </div>
-
                       <div className="row">
                         <div className="col-4">
-                          <label >Marital Status</label>
+                          <label >Amount Spend on Fish</label>
                         </div>
                         <div className="col-6">
                           <Select options={genderValues}>
                           </Select><br></br>
                         </div>
                       </div> 
+
+                      <div className="row">
+                        <div className="col-4">
+                          <label >Amount Spend on Sweets</label>
+                        </div>
+                        <div className="col-6">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div> 
+                      <div className="row">
+                        <div className="col-4">
+                          <label >Amount Spend on Gold</label>
+                        </div>
+                        <div className="col-6">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div> 
+                     
                       <center>
                         
                       <button className="btn-grad" type="button" onClick={this.GetDetails}>PREDICT</button>
