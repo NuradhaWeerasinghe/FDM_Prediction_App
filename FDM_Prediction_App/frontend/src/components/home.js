@@ -1,171 +1,254 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Bar } from "react-chartjs-2";
-
-export default function ChartByProfessionCategory() {
-
-    //category A
-    const [Marital_StatusCategoryA, setMarital_StatusCategoryA] = useState(0);
-    const [engineerCategoryA, setEngineerCategoryA] = useState(0);
-    const [healthcareCategoryA, setHealthcareCategoryA] = useState(0);
-    const [lawyerCategoryA, setLawyerCategoryA] = useState(0);
-    const [artistCategoryA, setArtistCategoryA] = useState(0);
-    const [entertainmentCategoryA, setEntertainmentCategoryA] = useState(0);
-    const [executiveCategoryA, setExecutiveCategoryA] = useState(0);
-    const [homemakerCategoryA, setHomemakerCategoryA] = useState(0);
-    const [marketingCategoryA, setMarketingCategoryA] = useState(0);
-
-    
-
-    useEffect(() => {
-
-        axios.get("http://localhost:8000/customers").then((res) => {
-            console.log(res.data);
-
-            //category A
-            let Marital_StatusCategoryA = 0;
-            let engineerCountCategoryA = 0;
-            let healthcareCountCategoryA = 0;
-            let lawyerCountCategoryA = 0;
-            let artistCountCategoryA = 0;
-            let entertainmentCountCategoryA = 0;
-            let executiveCountCategoryA = 0;
-            let homemakerCountCategoryA = 0;
-            let marketingCountCategoryA = 0;
-            
+import React, { Component } from 'react'
+import axios from 'axios';
+import { Link } from "react-router-dom";
+import {toast} from 'react-toastify';
+import { useState, useEffect } from "react"
+import Nav from './nav'
+import {Bar,Line} from "react-chartjs-2"
+import './style.css';
 
 
-            res.data.forEach((singleUser) => {
-                if (singleUser.Marital_Status.localeCompare("1") == 0) {
-                    if (singleUser.l1.localeCompare("1") == 0) {
-                        setMarital_StatusCategoryA(++Marital_StatusCategoryA)
-                    }
-                }
-                if (singleUser.Profession.localeCompare("Engineer") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setEngineerCategoryA(++engineerCountCategoryA)
-                    }
-                }
+export default class Datat extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      customers: [],
+      clData1:{
+        labels:["cluster1","cluster2","cluster3","cluster4"],
+        datasets:[{
+          label:"Line Chart For Annual Profits",
+          data:[{data:[1,2,3,4]},{data:[3,4,2,1]},{data:[6,6,3,2]}],
+        }],
+      }, 
+      clData2:{
+        labels:["cluster1","cluster2","cluster3","cluster4"],
+        datasets:[{
+          label:"Line Chart For Annual Profits",
+          data:[10,3,7,5],
+         
+        }],
+      },
+      clData3:{
+        labels:["cluster1","cluster2","cluster3","cluster4"],
+        datasets:[{
+          label:"Line Chart For Annual Profits",
+          data:[1,3,2,5],
+         
+        }],
+      }, 
+      clData4:{
+        labels:["cluster1","cluster2","cluster3","cluster4"],
+        datasets:[{
+          label:"Line Chart For Annual Profits",
+          data:[1,3,2,5],
+         
+        }],
+      },  
+    };
+  }
 
+  
 
-                if (singleUser.Profession.localeCompare("Healthcare") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setHealthcareCategoryA(++healthcareCountCategoryA)
-                    }
-                    }
-
-
-                if (singleUser.Profession.localeCompare("Lawyer") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setLawyerCategoryA(++lawyerCountCategoryA)
-                    }
-                    }
-
-                if (singleUser.Profession.localeCompare("Entertainment") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setArtistCategoryA(++artistCountCategoryA)
-                    }
-                    }
  
-                if (singleUser.Profession.localeCompare("Artist") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setEntertainmentCategoryA(++entertainmentCountCategoryA)
-                    }
-                    }
 
-                
-                if (singleUser.Profession.localeCompare("Executive") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setExecutiveCategoryA(++executiveCountCategoryA)
-                    }
-                    }
+  componentDidMount() {
+    this.retrieveCustomers();
+  }
 
-                if (singleUser.Profession.localeCompare("Homemaker") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setHomemakerCategoryA(++homemakerCountCategoryA)
-                    }
-                    }
+  retrieveCustomers() {
+    axios.get("http://localhost:8000/customers").then(res => {
+      if (res.data.success) {
+        this.setState({
+          customers: res.data.existingCustomers
+        });
+        console.log(this.state.customers)
+      }
+    });
+  }
 
-
-                if (singleUser.Profession.localeCompare("Marketing") == 0) {
-                    if (singleUser.Segmentation.localeCompare("Customer Segmentation is :['A']") == 0) {
-                        setMarketingCategoryA(++marketingCountCategoryA)
-                    }
-                    }
-            })
+  clustermethod= () => {
+    let tot1 = 0;
+    let tot2 = 0;
+    let tot3 = 0;
+    let tot4 = 0;
+    this.state.customers.map((customers,index)=>{
+      if(customers.l3 == "1")
+         tot1 =  tot1 + 1;
+      })
+      this.state.customers.map((customers,index)=>{
+        if(customers.l3 == "2")
+           tot2 =  tot2 + 1;
         })
+        this.state.customers.map((customers,index)=>{
+          if(customers.l3 == "3")
+             tot3 =  tot3 + 1;
+          })
+          this.state.customers.map((customers,index)=>{
+            if(customers.l3 == "4")
+               tot4 =  tot4 + 1;
+            })
+            document.getElementById("t1").value = tot3
+          
+   }
 
-    }, [])
+  
 
-    //Categoty A by Profession Bar Chart
-
-    const barChartCategoryA = (
-        <Bar
-            data={{
-                labels: ['Doctor', 'Engineer','Healthcare','Lawyer','Artist','Entertainment','Executive','Homemaker','Marketing'],
-                datasets: [
-                    {
-                        data: [Marital_StatusCategoryA, engineerCategoryA,healthcareCategoryA,lawyerCategoryA,artistCategoryA,entertainmentCategoryA,executiveCategoryA,homemakerCategoryA,marketingCategoryA],
-                        backgroundColor: [
-                            "#3da19c",
-                            "#06adbf",
-                            "#f7d619",
-                            "#bf00c2",
-                            "#ff2684",
-                            "#3254a8",
-                        ],
-                        label: "Category A",
-                    },
-                ],
-            }}
-            options={{
-                layout: {
-                    padding: {
-                        left: 0,
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                    },
-                },
-
-                scales: {
-                    xAxes: [
-                        {
-                            gridLines: {
-                                display: false,
-                                drawBorder: true,
-                                drawOnChartArea: false,
-                            },
-                        },
-                    ],
-                    yAxes: [
-                        {
-                            gridLines: {
-                                display: false,
-                                drawBorder: true,
-                                drawOnChartArea: false,
-                            },
-                        },
-                    ],
-                },
-            }}
-        />
-    );
-
+  // filter methods
+ 
+  render() {
+    const {data,clData1,clData2,clData3,clData4}= this.state;
     return (
-        <div className="container mt-5">
-            <div className="card boderRadiusCards">
-                <div className="card-body">
-                    <div>
-                        <h5 className="text-center">Category By Profession Oveview</h5>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6 p-5"><h3>Category A By Profession</h3> <hr />{barChartCategoryA}</div>
-                        <div>
-                        </div>
-                    </div>
-                </div>
-                </div>
+       /* Frontend output */
+    <div>
+    <main>
+   {/* beginning of back  */}
+   <section class="glass">
+       {/* beginning of left nav  */}
+        <div class="">
+          <Nav/>
+
         </div>
-                )
-}
+        
+        <div class="chr_css_table"> {/* container of white back card*/}
+            {/*<h1>Customer Segmentaion</h1>*/}
+            <div className = "card">
+            
+            <div className="">
+              <h4>Customer Details</h4>
+            </div>
+            <div className="row">
+                <div className="filter-size col-2" >
+                    Filter{" "}  
+                    <select value={this.props.size} onChange={this.props.filterProducts}>
+                      <option value="">All</option>
+                      <option value="Starters">Pending</option>
+                      <option value="Mains">Accepted</option>
+                      <option value="Deserts">Completed</option>
+                      <option value="Beverages">Cancelled</option>
+                  </select></div>
+            <div className="col-4" style={{float:'right', marginLeft:"300px"}}>
+              <input
+                className="form-control"
+                type="search"
+                placeholder="search"
+                name="searchQuery"
+                onChange={this.handleSearchArea}></input>
+  
+            </div>
+  
+          </div>
+          </div>
+
+
+
+          <div className = "card_tab">
+          <div className="container">
+          <Bar 
+           options={{
+             fill:{
+                  target:'origin',
+                  above:'rgba(0,230,64,1)', 
+             },
+           title:{
+             display:true,
+             text:"Line Chart for Annual Profit",
+             fontSize:32
+           },
+           legend:{
+             display:true,
+             position:"right"
+           },
+            backgroundColor: "rgba(25,181,254,1)",
+            hoverBackgroundColor: "rgba(255,0,255,0.75)",
+            hoverBorderWidth: 20,
+            hoverBorderColor: "rgba(255,0,255,0.75)",
+           borderColor:"rgba(25,181,254,1)",
+           borderWidth:2,
+           radius:2
+
+           }}
+           data={clData1}/> 
+          <br></br>
+          <Bar 
+           options={{
+           backgroundColor: [
+            "#ffbb11",
+            "#ecf0f1",
+            "#50AF95",
+            "#f3ba2f",
+            "#2a71d0"
+          ],
+           borderWidth:2,
+           radius:2
+
+           }}
+           data={clData2}/> 
+           <br></br>
+           <Bar 
+           options={{
+             fill:{
+                  target:'origin',
+                  above:'rgba(0,230,64,1)', 
+             },
+           title:{
+             display:true,
+             text:"Line Chart for Annual Profit",
+             fontSize:32
+           },
+           legend:{
+             display:true,
+             position:"right"
+           },
+            backgroundColor: "rgba(25,181,254,1)",
+            hoverBackgroundColor: "rgba(255,0,255,0.75)",
+            hoverBorderWidth: 20,
+            hoverBorderColor: "rgba(255,0,255,0.75)",
+           borderColor:"rgba(25,181,254,1)",
+           borderWidth:2,
+           radius:2
+
+           }}
+           data={clData3}/> 
+           <br></br>
+           <Bar 
+           options={{
+             fill:{
+                  target:'origin',
+                  above:'rgba(0,230,64,1)', 
+             },
+           title:{
+             display:true,
+             text:"Line Chart for Annual Profit",
+             fontSize:32
+           },
+           legend:{
+             display:true,
+             position:"right"
+           },
+            backgroundColor: "rgba(25,181,254,1)",
+            hoverBackgroundColor: "rgba(255,0,255,0.75)",
+            hoverBorderWidth: 20,
+            hoverBorderColor: "rgba(255,0,255,0.75)",
+           borderColor:"rgba(25,181,254,1)",
+           borderWidth:2,
+           radius:2
+
+           }}
+           data={clData4}/> 
+      </div>
+
+          </div>
+            
+           
+        </div>
+      </section>
+    </main>
+    {/*<div class="circle1"></div>
+      <div class="circle2"></div>*/}
+
+  </div>
+
+      
+    )
+  }
+};

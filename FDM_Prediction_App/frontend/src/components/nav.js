@@ -17,9 +17,9 @@ export default class sidebars extends Component {
                 >
                     <SideNav.Toggle className="marg" />
                     <SideNav.Nav defaultSelected="home">
-                        <NavItem className="item" eventKey="Home">
+                        <NavItem className="item " eventKey="Home" style={{marginTop:"20px"}}>
                             <NavIcon><Link to="/">
-                                <i class="fas fa-chart-line" width="30px" height="30px"></i>
+                            <i class="fa fa-home fa-2x" aria-hidden="true"></i>
                             </Link>
                             </NavIcon>
                             <NavText>
@@ -29,7 +29,8 @@ export default class sidebars extends Component {
 
                         <NavItem className="item" eventKey="Prediction">
                             <NavIcon><Link to="/predict">
-                                <img src="https://i.ibb.co/fx7wFSS/icon-8.png" alt="icon-8" width="30px" height="30px" />
+                            <i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
+
                             </Link>
                             </NavIcon>
                             <NavText>
@@ -38,7 +39,8 @@ export default class sidebars extends Component {
                         </NavItem>
                         <NavItem className="item" eventKey="Overview">
                             <NavIcon><Link to="/chart">
-                                <img src="https://i.ibb.co/fx7wFSS/icon-8.png" alt="icon-8" width="30px" height="30px" />
+                            <i class="fa fa-table fa-2x" aria-hidden="true"></i>
+
                             </Link>
                             </NavIcon>
                             <NavText>
@@ -47,11 +49,23 @@ export default class sidebars extends Component {
                         </NavItem>
                         <NavItem className="item" eventKey="CustomerData">
                             <NavIcon><Link to="/data">
-                                <img src="https://i.ibb.co/fx7wFSS/icon-8.png" alt="icon-8" width="30px" height="30px" />
+                            <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+
                             </Link>
                             </NavIcon>
                             <NavText>
-                            Customer Data;
+                            Customer Data
+                            </NavText>
+                        </NavItem>
+                        <NavItem className="item" eventKey="Contact" style={{marginTop:"200px", height:"30px", width:"20px"}}>
+                            <NavIcon><Link to="/data">
+                            <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+
+
+                            </Link>
+                            </NavIcon>
+                            <NavText>
+                            Contact
                             </NavText>
                         </NavItem>
                     </SideNav.Nav>

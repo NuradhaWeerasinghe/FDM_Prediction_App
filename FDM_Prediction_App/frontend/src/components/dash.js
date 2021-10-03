@@ -23,77 +23,76 @@ export default class Dash extends React.Component {
   constructor(props) {
     super(props);
     this.onSelectGender = this.onSelectGender.bind(this);
-   
+
     this.state = {
-        Gender: 0,
-       
+      Gender: 0,
+
     };
 
     this.GetDetails = this.GetDetails.bind(this)
-}
-
-onSelectGender = (event) => {
-  if (event) {
-      console.log('value', parseInt(event.value));
-      this.setState({ Gender: event.value },() => console.log(this.state));
   }
-};
 
-onsubmit = (event) => {
-  event.preventDefault()
-  let headers = new Headers();
+  onSelectGender = (event) => {
+    if (event) {
+      console.log('value', parseInt(event.value));
+      this.setState({ Gender: event.value }, () => console.log(this.state));
+    }
+  };
 
-  headers.append('Origin', 'http://localhost:3000');
-  headers.append('Content-Type', 'application/json');
-  headers.append('Accept', 'application/json');
+  onsubmit = (event) => {
+    event.preventDefault()
+    let headers = new Headers();
 
-  let formdata = new FormData();
-  formdata.append('Gender', 'aa')
+    headers.append('Origin', 'http://localhost:3000');
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
 
-  const requestOptions = {
+    let formdata = new FormData();
+    formdata.append('Gender', 'aa')
+
+    const requestOptions = {
 
       method: 'POST',
       headers: headers,
       mode: 'no-cors',
       body: formdata
 
-  };
+    };
 
-  fetch('http://127.0.0.1:5000/api/users', requestOptions).then(response => console.log(response));
+    fetch('http://127.0.0.1:5000/api/users', requestOptions).then(response => console.log(response));
 
-}
-
-
+  }
 
 
 
-GetDetails() {
 
-  let formData = new FormData();
-  formData.append('Gender', this.state.Gender);
-  
-      console.log('I was here')
-  API.getPrediction(formData)
+
+  GetDetails() {
+
+    let formData = new FormData();
+    formData.append('Gender', this.state.Gender);
+
+    console.log('I was here')
+    API.getPrediction(formData)
       .then(res => {
-         this.setState({
-             result:res.data
-         })
+        this.setState({
+          result: res.data
+        })
       })
-    }
+  }
 
   /* Frontend output */
   render() {
     return (
       <div>
         <main>
-        {/* beginning of back  */}
+          {/* beginning of back  */}
           <section class="glass">
 
             {/* beginning of left nav  */}
-          
-             <Nav/>
-            
-            
+            <Nav />
+
+
             <div class="games"> {/* container of white back card*/}
               {/*<h1>Customer Segmentaion</h1>*/}
               <div class="cards">
@@ -104,82 +103,145 @@ GetDetails() {
                     {/* beginning of the form  */}
                     <Form>
                       <div className="row">
-                        <div className="col-4">
-                          <label >Amount Spend on Wines</label>
+                        <div className="col-4 marg_l">
+                          <label >Marital Status</label>
                         </div>
-                        <div className="col-6">
+                        <div className="col-5">
                           <Select options={genderValues}
-                          onChange={this.onSelectGender} required>
+                            onChange={this.onSelectGender} required>
                           </Select><br></br>
                         </div>
                       </div>
 
                       <div className="row">
-                        <div className="col-4">
-                          <label >Amount Spend on Fruits</label>
+                        <div className="col-4 marg_l">
+                          <label >Promotion 01</label>
                         </div>
-                        <div className="col-6">
+                        <div className="col-5">
                           <Select options={genderValues} required>
                           </Select><br></br>
                         </div>
                       </div>
 
                       <div className="row">
-                        <div className="col-4">
-                          <label >Amount Spend on Meats</label>
+                        <div className="col-4 marg_l">
+                          <label >Promotion 02</label>
                         </div>
-                        <div className="col-6">
+                        <div className="col-5">
                           <Select options={genderValues} required>
                           </Select><br></br>
                         </div>
                       </div>
-                      <div className="row">
-                        <div className="col-4">
-                          <label >Amount Spend on Fish</label>
-                        </div>
-                        <div className="col-6">
-                          <Select options={genderValues}>
-                          </Select><br></br>
-                        </div>
-                      </div> 
 
-                      <div className="row">
-                        <div className="col-4">
-                          <label >Amount Spend on Sweets</label>
+                      <div className="row"> 
+                        <div className="col-4 marg_l">
+                          <label >Promotion 03</label>
                         </div>
-                        <div className="col-6">
+                        <div className="col-5">
                           <Select options={genderValues}>
                           </Select><br></br>
                         </div>
-                      </div> 
+                      </div>
                       <div className="row">
-                        <div className="col-4">
-                          <label >Amount Spend on Gold</label>
+                        <div className="col-4 marg_l">
+                          <label >Promotion 04</label>
                         </div>
-                        <div className="col-6">
+                        <div className="col-5">
                           <Select options={genderValues}>
                           </Select><br></br>
                         </div>
-                      </div> 
-                     
+                      </div>
+                      <div className="row">
+                        <div className="col-4 marg_l">
+                          <label >Promotion 05</label>
+                        </div>
+                        <div className="col-5">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-4 marg_l">
+                          <label >Num of kids </label>
+                        </div>
+                        <div className="col-5">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-4 marg_l">
+                          <label >Education</label>
+                        </div>
+                        <div className="col-5">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-4 marg_l">
+                          <label >Age Group</label>
+                        </div>
+                        <div className="col-5">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-4 marg_l">
+                          <label >Income Category</label>
+                        </div>
+                        <div className="col-5">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-4 marg_l">
+                          <label >Recency category</label>
+                        </div>
+                        <div className="col-5">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-4 marg_l">
+                          <label >Total Spending</label>
+                        </div>
+                        <div className="col-5">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-4 marg_l">
+                          <label >Total_Purchases</label>
+                        </div>
+                        <div className="col-5">
+                          <Select options={genderValues}>
+                          </Select><br></br>
+                        </div>
+                      </div>
+
                       <center>
-                        
-                      <button className="btn-grad" type="button" onClick={this.GetDetails}>PREDICT</button>
+
+                        <button className="btn-grad" type="button" onClick={this.GetDetails}>PREDICT</button>
                       </center>
                     </Form>
                   </div>
                 </div>
-                
+
                 <div class="card">
-                               
-                   <div className="row">
-                        <div className="col-5">
-                          <label >Customer Segment  : </label>
-                        </div>
-                        <div className="col-6">
-                        <label >{this.state.result}</label>
-                        </div>
-                      </div>
+
+                  <div className="row">
+                    <div className="col-5">
+                      <label >Customer Segment  : </label>
+                    </div>
+                    <div className="col-6">
+                      <label >{this.state.result}</label>
+                    </div>
+                  </div>
 
                 </div>
               </div>
