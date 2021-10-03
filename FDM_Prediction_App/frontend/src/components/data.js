@@ -115,28 +115,19 @@ export default class Datat extends Component {
             <tr>
               <th scope="col">#</th>
               <th scope="col">ID</th>
+              <th scope="col">Education</th>
+              <th scope="col">Age Group</th>
               <th scope="col">Marital Status</th>
+              <th scope="col">Total Child</th>
               <th scope="col">Income</th>
-              <th scope="col">Num. Kids</th>
-              <th scope="col">Num. Teens</th>
               <th scope="col">Recency</th>
-              <th scope="col">Wines Expense</th>
-              <th scope="col">Fruits Expense</th>
-              <th scope="col">Meat Expense</th>
-              <th scope="col">Fish Expense</th>
-              <th scope="col">Sweet Expense</th>
-              <th scope="col">Gold Expense</th>
-              <th scope="col">Num Deals Purchases</th>
-              <th scope="col">Num Store Purchases</th>
-              <th scope="col">Num Catalog Purchases</th>
-              <th scope="col">Num Web Purchases</th>
+              <th scope="col">Total Purchases</th>
+              <th scope="col">Total Spending Category</th>
+              <th scope="col">Accepted Cmp1</th>
+              <th scope="col">Accepted Cmp2</th>
               <th scope="col">Accepted Cmp3</th>
               <th scope="col">Accepted Cmp4</th>
               <th scope="col">Accepted Cmp5</th>
-              <th scope="col">Accepted Cmp1</th>
-              <th scope="col">Accepted Cmp2</th>
-              <th scope="col">Age</th>
-              <th scope="col">Education</th>
               <th scope="col">Cluster</th>
             </tr>
           </thead>
@@ -145,29 +136,20 @@ export default class Datat extends Component {
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
                 <td>{customers._id}</td>
+                <td>{customers.Education1}</td>
+                <td>{customers.AgeGroup}</td>
                 <td>{customers.Marital_Status}</td>
-                <td>{customers.Income}</td>
-                <td>{customers.Kidhome}</td>
-                <td>{customers.Teenhome}</td>
-                <td>{customers.Recency}</td>
-                <td>{customers.MntWines}</td>
-                <td>{customers.MntFruits}</td>
-                <td>{customers.MntMeatProducts}</td>
-                <td>{customers.MntFishProducts}</td>
-                <td>{customers.MntSweetProducts}</td>
-                <td>{customers.MntGoldProds}</td>
-                <td>{customers.NumDealsPurchases}</td>
-                <td>{customers.NumCatalogPurchases}</td>
-                <td>{customers.NumStorePurchases}</td>
-                <td>{customers.NumWebPurchases}</td>
+                <td>{customers.Total_child}</td>
+                <td>{customers.Income_C}</td>
+                <td>{customers.Recency_c}</td>
+                <td>{customers.Total_Purchases_c}</td>
+                <td>{customers.Total_Spending_c}</td>
+                <td>{customers.AcceptedCmp1}</td>
+                <td>{customers.AcceptedCmp2}</td>
                 <td>{customers.AcceptedCmp3}</td>
                 <td>{customers.AcceptedCmp4}</td>
                 <td>{customers.AcceptedCmp5}</td>
-                <td>{customers.AcceptedCmp1}</td>
-                <td>{customers.AcceptedCmp2}</td>
-                <td>{customers.Age}</td>
-                <td>{customers.Education1}</td>
-                <td>{customers.l3}</td>
+                <td>{customers.Clusters_1}</td>
               </tr>
             ))}
           </tbody>
