@@ -32,7 +32,7 @@ export default class Datat extends Component {
       }
     });
   }
-//cluster
+
   clusterSelect() {
 
   }
