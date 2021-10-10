@@ -9,7 +9,9 @@ const app = express();
 const customerRoutes = require('./routes/customers');
 
 //app middleware
-app.use(bodyParser.json());
+//Init Middleware( include  bodyparser through express)
+app.use(express.json({ extended: false }));
+
 app.use(cors());
 
 //roote middleware

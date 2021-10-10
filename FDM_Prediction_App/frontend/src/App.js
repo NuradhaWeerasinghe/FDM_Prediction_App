@@ -11,7 +11,7 @@ import nav from './components/nav'
 import  Datat from "./components/data";
 import  Home from "./components/home";
 import { Chart } from "./components/Chart";
-
+import  ChartByProfessionCategory from "./components/tada";
 
 
 
@@ -56,7 +56,7 @@ function App() {
           <Route path="/nav" exact component={nav}></Route>
           <Route path="/data" exact component={Datat}></Route>
           <Route path="/home" exact component={Home}></Route>
-         
+          <Route path="/tada" exact component={ChartByProfessionCategory}></Route>
     </BrowserRouter>
     </div>
   );
