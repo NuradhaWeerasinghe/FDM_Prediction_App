@@ -12,7 +12,26 @@ export default class Datat extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cl1:Number,
+      cl2:Number,
+      cl3:Number,
+      cl4:Number,
       customers: [],
+
+
+      clDataNew:{
+        labels:["cluster1","cluster2","cluster3","cluster4"],
+        datasets:[
+        {
+        label: "CLUSTER COUNT",
+        data:[],
+        backgroundColor: "rgba(25,181,254,1)",
+        }
+          ],
+
+      }, 
+
+
       clData1:{
         labels:["cluster1","cluster2","cluster3","cluster4"],
         datasets:[
@@ -113,10 +132,40 @@ export default class Datat extends Component {
 
       },   
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   
+  handleSubmit(e){
+    e.preventDefault();
+    const {clDataNew} = this.state;
+   this.setState({
+   clDataNew:{
+     ...clDataNew,
+     labels:["cluster1","cluster2","cluster3","cluster4"],
+     datasets:[{
+       ...clDataNew.datasets,
+       label:"Amount Profit",
+       data:[
+         this.state.cl1,
+         this.state.cl2,
+         this.state.cl3,
+         this.state.cl4,
+       ],
+     }]
+   },
+   })
+  }
 
+
+  updateState =(a,b,c,d) => {
+    this.setState({
+        cl1:a,
+        cl2:b,
+        cl3:c,
+        cl4:d,
+    })
+  }
  
 
   componentDidMount() {
@@ -134,29 +183,34 @@ export default class Datat extends Component {
     });
   }
 
+
+
   clustermethod= () => {
     let tot1 = 0;
     let tot2 = 0;
     let tot3 = 0;
     let tot4 = 0;
     this.state.customers.map((customers,index)=>{
-      if(customers.l3 == "1")
+      if(customers.Clusters_1 == "0")
          tot1 =  tot1 + 1;
       })
       this.state.customers.map((customers,index)=>{
-        if(customers.l3 == "2")
+        if(customers.Clusters_1 == "1")
            tot2 =  tot2 + 1;
         })
         this.state.customers.map((customers,index)=>{
-          if(customers.l3 == "3")
+          if(customers.Clusters_1 == "2")
              tot3 =  tot3 + 1;
           })
           this.state.customers.map((customers,index)=>{
-            if(customers.l3 == "4")
+            if(customers.Clusters_1 == "3")
                tot4 =  tot4 + 1;
             })
-            document.getElementById("t1").value = tot3
-          
+            document.getElementById("t1").value = tot1
+            document.getElementById("t2").value = tot2
+            document.getElementById("t3").value = tot3
+            document.getElementById("t4").value = tot4
+            this.updateState(tot1,tot2,tot3,tot4)
    }
 
   
@@ -164,7 +218,7 @@ export default class Datat extends Component {
   // filter methods
  
   render() {
-    const {data,clData1,clData2,clData3,clData4}= this.state;
+    const {data,clData1,clData2,clData3,clData4,clDataNew}= this.state;
     return (
        /* Frontend output */
     <div>
@@ -179,11 +233,34 @@ export default class Datat extends Component {
         
         <div class="chr_css"> {/* container of white back card*/}
             {/*<h1>Customer Segmentaion</h1>*/}
-            
+            <form onSubmit={(e)=>this.handleSubmit(e)} >
+          <input name="cl1" value={this.state.cl1}></input>
+          <input name="cl2" value={this.state.cl2}></input>
+          <input name="cl3" value={this.state.cl3}></input>
+          <input name="cl4" value={this.state.cl4}></input>
 
+          <input id="t1"></input>
+          <input id="t2"></input>
+          <input id="t3"></input>
+          <input id="t4"></input>
+          
+        </form>
+        <button onClick={this.clustermethod}>hello</button>
           <div class="cards">
               <div class="card"> {/* white back  card*/}
                 <div className="App">
+
+                <Bar 
+                  options={{
+                    title:{
+                        display:true,
+                        text:"Bar Chart for Number of purchases",
+                        fontSize:32
+                      },
+                    }}
+                data={clDataNew}/>
+
+
                 <Bar 
                 options={{
                 title:{
