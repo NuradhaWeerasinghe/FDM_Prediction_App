@@ -15,10 +15,7 @@ export default class Datat extends Component {
     };
   }
 
-  // Creating report 
  
- 
-
   componentDidMount() {
     this.retrieveCustomers();
   }
